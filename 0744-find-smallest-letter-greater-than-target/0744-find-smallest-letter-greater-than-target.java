@@ -14,6 +14,5 @@ class Solution {
             }
         }
         return letters[start % letters.length];
-        
     }
 }
