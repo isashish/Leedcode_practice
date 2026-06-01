@@ -1,22 +1,22 @@
 class Solution {
     public int minimumCost(int[] cost) {
-
+        int n = cost.length;
         Arrays.sort(cost);
-        int minCost = 0;
-       
-        if(cost.length<=2){
-            for(int i : cost)
-                minCost += i;
-            return minCost;
+
+        //Reverse the array to sort in descending order
+        for(int l = 0, r = n-1; l < r; l++, r--){
+            int temp = cost[l];
+            cost[l] = cost[r];
+            cost[r] = temp;
         }
-       
-        for(int i = cost.length-1; i >= 0; i-=3){
-            minCost += cost[i];
-            if(i-1 >= 0){
-                minCost += cost[i-1];
+
+        int total = 0;
+
+        for(int i = 0; i < n; i++){
+            if(i % 3 != 2){
+                total += cost[i];
             }
         }
-        
-        return minCost;
+        return total;
     }
 }
