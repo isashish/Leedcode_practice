@@ -15,10 +15,10 @@
  */
 class Solution {
     private boolean isMirrorNode(TreeNode leftSide, TreeNode rightSide){
-        if(leftSide == null && rightSide == null){
+         if(leftSide == null && rightSide == null){
             return true;
         }
-
+        
         if(leftSide == null || rightSide == null){
             return false;
         }
