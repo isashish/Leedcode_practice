@@ -14,18 +14,20 @@
  * }
  */
 class Solution {
-    private void swapNode(TreeNode node){
+    private void swap(TreeNode node){
         if(node == null){
             return;
         }
+        
         TreeNode temp = node.left;
         node.left = node.right;
         node.right = temp;
-        swapNode(node.left);
-        swapNode(node.right);
+
+        swap(node.left);
+        swap(node.right);
     }
     public TreeNode invertTree(TreeNode root) {
-        swapNode(root);
+        swap(root);
         return root;
     }
 }
