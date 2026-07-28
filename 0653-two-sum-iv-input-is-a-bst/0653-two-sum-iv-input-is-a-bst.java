@@ -15,35 +15,19 @@
  */
 class Solution {
     public boolean findTarget(TreeNode root, int k) {
-        List<Integer> list = new ArrayList<>();
-
-        inorder(root, list);
-
-        int left = 0;
-        int right = list.size()-1;
-
-        while(left < right){
-            int sum = list.get(left) + list.get(right);
-
-            if(sum == k){
-                return true;
-            }
-            else if(sum < k){
-                left++;
-            }
-            else {
-                right--;
-            }
-        }
-        return false;
+        HashSet<Integer> set = new HashSet<>();
+        return helper(root, k, set);
     }
-    private void inorder(TreeNode root, List<Integer> list){
-        if(root == null){
-            return;
+
+    private boolean helper(TreeNode node, int k, HashSet<Integer> set){
+        if(node == null){
+            return false;
+        }
+        if(set.contains(k - node.val)){
+            return true;
         }
 
-        inorder(root.left, list);
-        list.add(root.val);
-        inorder(root.right, list);
+        set.add(node.val);
+        return helper(node.left, k, set) || helper(node.right, k, set);
     }
 }
